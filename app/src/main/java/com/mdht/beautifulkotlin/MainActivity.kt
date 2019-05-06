@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
@@ -53,6 +54,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     setAddress { "建国路22号" }
                 }
                 Log.d("MainActivity", "kotlin--${configKotlin.name}住在${configKotlin.address}")
+                val configBadWay = StudentConfigJustSeeSee.Builder()
+                    .setId(12)
+                    .setGrade(98)
+                    .create()
+                Log.d("MainActivity", "kotlin--${configBadWay.id}号学生的成绩是${configBadWay.grade}")
+
             }
 
         }
