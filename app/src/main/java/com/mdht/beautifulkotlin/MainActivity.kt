@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
+import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
 import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
 import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
+import com.mdht.beautifulkotlin.factorymethod.ColorFactoryJava
+import com.mdht.beautifulkotlin.factorymethod.EnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -20,6 +22,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
     private lateinit var mTvSingleton: TextView
     private lateinit var mTvCloneable: TextView
+    private lateinit var mTvFactoryMethod: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,12 +35,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvSingleton = findViewById<TextView>(R.id.tv_singleton)
         mTvBuilder = findViewById<TextView>(R.id.tv_builder)
         mTvCloneable = findViewById<TextView>(R.id.tv_cloneable)
+        mTvFactoryMethod = findViewById<TextView>(R.id.tv_factory_method)
     }
 
     private fun initListener() {
         mTvSingleton.setOnClickListener(this)
         mTvBuilder.setOnClickListener(this)
         mTvCloneable.setOnClickListener(this)
+        mTvFactoryMethod.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -73,6 +79,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //                cloneableKotlinCopy()
                 cloneableKotlin()
             }
+            R.id.tv_factory_method -> {
+                ColorFactoryJava.getColor(EnumJava.RED).show();
+            }
 
         }
     }
@@ -104,6 +113,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         wordDocumentJava2.showDocument()
         wordDocumentJava.showDocument()
     }
+
     private fun cloneableKotlin() {
         val wordDocumentKotlin = WordDocumentKotlin()
         wordDocumentKotlin.text = "这是一篇文档"
