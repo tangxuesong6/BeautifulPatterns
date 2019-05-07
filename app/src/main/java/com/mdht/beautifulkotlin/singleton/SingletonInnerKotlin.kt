@@ -12,4 +12,5 @@ class SingletonInnerKotlin private constructor(){
     fun doSomething(){
         Log.d("SingletonInnerKotlin","kotlin 单例方法")
     }
+    fun print() = println("Printing with object: $this")
 }

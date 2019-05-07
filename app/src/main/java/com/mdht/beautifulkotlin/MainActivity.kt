@@ -60,11 +60,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     setAddress { "建国路22号" }
                 }
                 Log.d("MainActivity", "kotlin--${configKotlin.name}住在${configKotlin.address}")
-                val configBadWay = StudentConfigJustSeeSee.Builder()
+                val configJustSeeSee = StudentConfigJustSeeSee.Builder()
                     .setId(12)
                     .setGrade(98)
                     .create()
-                Log.d("MainActivity", "kotlin--${configBadWay.id}号学生的成绩是${configBadWay.grade}")
+                Log.d("MainActivity", "kotlin--${configJustSeeSee.id}号学生的成绩是${configJustSeeSee.grade}")
 
             }
             R.id.tv_cloneable -> {
