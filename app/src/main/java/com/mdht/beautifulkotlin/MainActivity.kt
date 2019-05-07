@@ -11,8 +11,10 @@ import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
 import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
 import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
-import com.mdht.beautifulkotlin.factorymethod.ColorFactoryJava
-import com.mdht.beautifulkotlin.factorymethod.EnumJava
+import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
+import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
+import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
+import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -80,7 +82,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 cloneableKotlin()
             }
             R.id.tv_factory_method -> {
-                ColorFactoryJava.getColor(EnumJava.RED).show();
+                ColorFactoryJava.getColor(EnumJava.RED).show()
+                ColorFactoryKotlin.getColor(EnumKotlin.YELLOW)?.show()
             }
 
         }

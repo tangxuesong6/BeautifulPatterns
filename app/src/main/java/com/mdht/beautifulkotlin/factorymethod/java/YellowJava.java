@@ -1,6 +1,7 @@
-package com.mdht.beautifulkotlin.factorymethod;
+package com.mdht.beautifulkotlin.factorymethod.java;
 
 import android.util.Log;
+import com.mdht.beautifulkotlin.factorymethod.java.IColorJava;
 
 public class YellowJava implements IColorJava {
     @Override

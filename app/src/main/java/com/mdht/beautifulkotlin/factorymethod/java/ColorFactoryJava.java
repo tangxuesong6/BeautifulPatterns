@@ -1,4 +1,4 @@
-package com.mdht.beautifulkotlin.factorymethod;
+package com.mdht.beautifulkotlin.factorymethod.java;
 
 public class ColorFactoryJava {
     public static IColorJava getColor(EnumJava enumJava){
