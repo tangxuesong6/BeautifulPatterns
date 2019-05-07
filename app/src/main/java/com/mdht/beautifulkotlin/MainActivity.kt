@@ -8,6 +8,9 @@ import android.widget.TextView
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
+import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
+import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
+import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -16,6 +19,7 @@ import com.mdht.beautifulkotlin.singleton.SingletonInnerKotlin
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
     private lateinit var mTvSingleton: TextView
+    private lateinit var mTvCloneable: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,11 +30,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initView() {
         mTvSingleton = findViewById<TextView>(R.id.tv_singleton)
         mTvBuilder = findViewById<TextView>(R.id.tv_builder)
+        mTvCloneable = findViewById<TextView>(R.id.tv_cloneable)
     }
 
     private fun initListener() {
         mTvSingleton.setOnClickListener(this)
         mTvBuilder.setOnClickListener(this)
+        mTvCloneable.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -61,7 +67,55 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d("MainActivity", "kotlin--${configBadWay.id}号学生的成绩是${configBadWay.grade}")
 
             }
+            R.id.tv_cloneable -> {
+//                cloneableJava()
+                //浅拷贝
+//                cloneableKotlinCopy()
+                cloneableKotlin()
+            }
 
         }
+    }
+
+    private fun cloneableKotlinCopy() {
+        val worldDocumentKotlinCopy = WorldDocumentKotlinCopy("hello", ArrayList())
+        worldDocumentKotlinCopy.text = "kotlin 数据类"
+        worldDocumentKotlinCopy.addImage("image 1")
+        worldDocumentKotlinCopy.addImage("image 2")
+        worldDocumentKotlinCopy.addImage("image 3")
+        worldDocumentKotlinCopy.showDocument()
+        val worldDocumentKotlinCopy2 = worldDocumentKotlinCopy.copy()
+        worldDocumentKotlinCopy2.text = "kotlin 数据类 修改"
+        worldDocumentKotlinCopy2.addImage("img four")
+        worldDocumentKotlinCopy2.showDocument()
+        worldDocumentKotlinCopy.showDocument()
+    }
+
+    private fun cloneableJava() {
+        val wordDocumentJava = WordDocumentJava()
+        wordDocumentJava.text = "这是一篇文档"
+        wordDocumentJava.addImage("图片 1")
+        wordDocumentJava.addImage("图片 2")
+        wordDocumentJava.addImage("图片 3")
+        wordDocumentJava.showDocument()
+        val wordDocumentJava2 = wordDocumentJava.clone()
+        wordDocumentJava2.showDocument()
+        wordDocumentJava2.text = "这是修改过的原始文档"
+        wordDocumentJava2.showDocument()
+        wordDocumentJava.showDocument()
+    }
+    private fun cloneableKotlin() {
+        val wordDocumentKotlin = WordDocumentKotlin()
+        wordDocumentKotlin.text = "这是一篇文档"
+        wordDocumentKotlin.addImage("图片 1")
+        wordDocumentKotlin.addImage("图片 2")
+        wordDocumentKotlin.addImage("图片 3")
+        wordDocumentKotlin.showDocument()
+        val wordDocumentKotlin2 = wordDocumentKotlin.clone()
+        wordDocumentKotlin2.showDocument()
+        wordDocumentKotlin2.text = "这是修改过的原始文档"
+        wordDocumentKotlin2.addImage("add 图片")
+        wordDocumentKotlin2.showDocument()
+        wordDocumentKotlin.showDocument()
     }
 }
