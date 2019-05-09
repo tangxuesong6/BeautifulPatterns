@@ -1,7 +1,5 @@
 package com.mdht.beautifulkotlin.abstractfactory.java;
 
-import com.mdht.beautifulkotlin.abstractfactory.kotlin.CarFactory;
-
 public abstract class CarFactoryJava {
     public abstract ITireJava createTire();
 

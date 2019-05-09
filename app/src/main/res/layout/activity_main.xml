@@ -26,6 +26,7 @@
                     android:background="#C0B33F"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
             <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/tv_builder"
@@ -36,6 +37,7 @@
                     android:background="#C0B33F"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
             <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/tv_cloneable"
@@ -46,6 +48,7 @@
                     android:background="#C0B33F"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
             <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/tv_factory_method"
@@ -56,6 +59,7 @@
                     android:background="#C0B33F"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
             <TextView
                     android:layout_marginTop="10dp"
                     android:id="@+id/tv_abstract_factory"

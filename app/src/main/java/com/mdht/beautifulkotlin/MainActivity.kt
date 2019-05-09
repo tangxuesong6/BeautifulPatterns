@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.TextView
 import com.mdht.beautifulkotlin.abstractfactory.java.CarFactoryJava
 import com.mdht.beautifulkotlin.abstractfactory.java.EnumFactoryJava
+import com.mdht.beautifulkotlin.abstractfactory.kotlin.CarFactoryKotlin
+import com.mdht.beautifulkotlin.abstractfactory.kotlin.EnumFactoryKotlin
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
@@ -83,7 +85,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_cloneable -> {
 //                cloneableJava()
                 //浅拷贝
-//                cloneableKotlinCopy()
+//                cloneableKotlinCopy()o
                 cloneableKotlin()
             }
             R.id.tv_factory_method -> {
@@ -92,6 +94,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tv_abstract_factory -> {
                 CarFactoryJava.createFactory(EnumFactoryJava.Q3).createTire().tire()
+                CarFactoryKotlin.createFactory(EnumFactoryKotlin.Q7).createTire().tire()
             }
 
         }
