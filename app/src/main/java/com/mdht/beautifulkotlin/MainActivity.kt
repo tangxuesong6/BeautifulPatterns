@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import com.mdht.beautifulkotlin.abstractfactory.java.CarFactoryJava
+import com.mdht.beautifulkotlin.abstractfactory.java.EnumFactoryJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvSingleton: TextView
     private lateinit var mTvCloneable: TextView
     private lateinit var mTvFactoryMethod: TextView
+    private lateinit var mTvAbstractFactory: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvBuilder = findViewById<TextView>(R.id.tv_builder)
         mTvCloneable = findViewById<TextView>(R.id.tv_cloneable)
         mTvFactoryMethod = findViewById<TextView>(R.id.tv_factory_method)
+        mTvAbstractFactory = findViewById<TextView>(R.id.tv_abstract_factory)
     }
 
     private fun initListener() {
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvBuilder.setOnClickListener(this)
         mTvCloneable.setOnClickListener(this)
         mTvFactoryMethod.setOnClickListener(this)
+        mTvAbstractFactory.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -84,6 +89,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_factory_method -> {
                 ColorFactoryJava.getColor(EnumJava.RED).show()
                 ColorFactoryKotlin.getColor(EnumKotlin.YELLOW)?.show()
+            }
+            R.id.tv_abstract_factory -> {
+                CarFactoryJava.createFactory(EnumFactoryJava.Q3).createTire().tire()
             }
 
         }
