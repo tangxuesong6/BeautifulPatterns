@@ -23,6 +23,8 @@ import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
 import com.mdht.beautifulkotlin.singleton.SingletonInnerKotlin
+import com.mdht.beautifulkotlin.strategy.DogJava
+import com.mdht.beautifulkotlin.strategy.EatManagerJava
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvCloneable: TextView
     private lateinit var mTvFactoryMethod: TextView
     private lateinit var mTvAbstractFactory: TextView
-
+    private lateinit var mTvStrategy: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,6 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvCloneable = findViewById<TextView>(R.id.tv_cloneable)
         mTvFactoryMethod = findViewById<TextView>(R.id.tv_factory_method)
         mTvAbstractFactory = findViewById<TextView>(R.id.tv_abstract_factory)
+        mTvStrategy = findViewById<TextView>(R.id.tv_strategy)
     }
 
     private fun initListener() {
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvCloneable.setOnClickListener(this)
         mTvFactoryMethod.setOnClickListener(this)
         mTvAbstractFactory.setOnClickListener(this)
+        mTvStrategy.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -95,6 +99,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_abstract_factory -> {
                 CarFactoryJava.createFactory(EnumFactoryJava.Q3).createTire().tire()
                 CarFactoryKotlin.createFactory(EnumFactoryKotlin.Q7).createTire().tire()
+            }
+            R.id.tv_strategy -> {
+                val eatManagerJava = EatManagerJava()
+                eatManagerJava.setStrategy(DogJava())
+                eatManagerJava.eat()
             }
 
         }
