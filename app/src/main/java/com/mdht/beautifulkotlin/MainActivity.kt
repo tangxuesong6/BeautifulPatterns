@@ -23,8 +23,9 @@ import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
 import com.mdht.beautifulkotlin.singleton.SingletonInnerKotlin
-import com.mdht.beautifulkotlin.strategy.DogJava
-import com.mdht.beautifulkotlin.strategy.EatManagerJava
+import com.mdht.beautifulkotlin.strategy.java.EatManagerJava
+import com.mdht.beautifulkotlin.strategy.java.SheepJava
+import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -102,8 +103,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tv_strategy -> {
                 val eatManagerJava = EatManagerJava()
-                eatManagerJava.setStrategy(DogJava())
-                eatManagerJava.eat()
+                eatManagerJava.setStrategy(SheepJava())
+                val strJava = eatManagerJava.eat("Judy")
+                Log.d("MainActivity", strJava)
+
+
+                val dog: (String) -> String = { "Dog: " + it + "在吃东西，汪旺旺" }
+                val sheep: (String) -> String = { "Sheep: " + it + "在吃东西，咩咩咩" }
+                val manager = EatManagerKotlin(dog)
+                val strKotlin = manager.eat("Hash")
+                Log.d("MainActivity", strKotlin)
+
             }
 
         }

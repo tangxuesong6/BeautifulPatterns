@@ -1,4 +1,4 @@
-package com.mdht.beautifulkotlin.strategy;
+package com.mdht.beautifulkotlin.strategy.java;
 
 public class EatManagerJava {
     private EatStrategyJava eatStrategyJava;
@@ -7,7 +7,7 @@ public class EatManagerJava {
         this.eatStrategyJava = eatStrategyJava;
     }
 
-    public void eat() {
-        eatStrategyJava.eat();
+    public String eat(String name) {
+        return eatStrategyJava.eat(name);
     }
 }
