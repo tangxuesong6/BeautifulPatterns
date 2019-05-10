@@ -23,6 +23,10 @@ import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
 import com.mdht.beautifulkotlin.singleton.SingletonInnerKotlin
+import com.mdht.beautifulkotlin.state.java.LoginContextJava
+import com.mdht.beautifulkotlin.state.java.LogoutStateJava
+import com.mdht.beautifulkotlin.state.kotlin.LoginContextKotlin
+import com.mdht.beautifulkotlin.state.kotlin.UserStateKotlin
 import com.mdht.beautifulkotlin.strategy.java.EatManagerJava
 import com.mdht.beautifulkotlin.strategy.java.SheepJava
 import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvFactoryMethod: TextView
     private lateinit var mTvAbstractFactory: TextView
     private lateinit var mTvStrategy: TextView
+    private lateinit var mTvState: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvFactoryMethod = findViewById<TextView>(R.id.tv_factory_method)
         mTvAbstractFactory = findViewById<TextView>(R.id.tv_abstract_factory)
         mTvStrategy = findViewById<TextView>(R.id.tv_strategy)
+        mTvState = findViewById<TextView>(R.id.tv_state)
     }
 
     private fun initListener() {
@@ -57,6 +63,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvFactoryMethod.setOnClickListener(this)
         mTvAbstractFactory.setOnClickListener(this)
         mTvStrategy.setOnClickListener(this)
+        mTvState.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -113,7 +120,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val manager = EatManagerKotlin(dog)
                 val strKotlin = manager.eat("Hash")
                 Log.d("MainActivity", strKotlin)
+            }
+            R.id.tv_state -> {
+                val loginContextJava = LoginContextJava()
+                loginContextJava.setState(LogoutStateJava())
+                loginContextJava.forward()
 
+                val loginContextKotlin = LoginContextKotlin()
+                loginContextKotlin.setState(UserStateKotlin.LoginedStateKotlin)
+                loginContextKotlin.comment()
             }
 
         }
