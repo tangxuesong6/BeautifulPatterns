@@ -12,6 +12,10 @@ import com.mdht.beautifulkotlin.abstractfactory.kotlin.EnumFactoryKotlin
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
+import com.mdht.beautifulkotlin.chainofresponsibility.java.BossJava
+import com.mdht.beautifulkotlin.chainofresponsibility.java.DirectorJava
+import com.mdht.beautifulkotlin.chainofresponsibility.java.GroupLeaderJava
+import com.mdht.beautifulkotlin.chainofresponsibility.java.ManagerJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
 import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
@@ -37,6 +41,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvAbstractFactory: TextView
     private lateinit var mTvStrategy: TextView
     private lateinit var mTvState: TextView
+    private lateinit var mTvChainOfResponsibility: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -52,6 +58,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvAbstractFactory = findViewById<TextView>(R.id.tv_abstract_factory)
         mTvStrategy = findViewById<TextView>(R.id.tv_strategy)
         mTvState = findViewById<TextView>(R.id.tv_state)
+        mTvChainOfResponsibility = findViewById<TextView>(R.id.tv_chain_of_responsibility)
     }
 
     private fun initListener() {
@@ -62,6 +69,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvAbstractFactory.setOnClickListener(this)
         mTvStrategy.setOnClickListener(this)
         mTvState.setOnClickListener(this)
+        mTvChainOfResponsibility.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -127,6 +135,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val loginContextKotlin = LoginContextKotlin()
                 loginContextKotlin.login()
                 loginContextKotlin.comment()
+            }
+            R.id.tv_chain_of_responsibility -> {
+                val groupLeaderJava = GroupLeaderJava()
+                val directorJava = DirectorJava()
+                val managerJava = ManagerJava()
+                val bossJava = BossJava()
+
+                groupLeaderJava.nextHandler = directorJava
+                directorJava.nextHandler = managerJava
+                managerJava.nextHandler = bossJava
+                groupLeaderJava.handleRequest(50000)
             }
 
         }

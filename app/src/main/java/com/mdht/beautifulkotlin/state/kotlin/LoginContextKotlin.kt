@@ -21,4 +21,11 @@ class LoginContextKotlin {
     fun logout() {
         userStateKotlin = UserStateKotlin.LogoutStateKotlin
     }
+
+    val isLogin: Boolean
+        get() = when (userStateKotlin) {
+            is UserStateKotlin.LoginedStateKotlin -> true
+            is UserStateKotlin.LogoutStateKotlin -> false
+        }
+
 }
