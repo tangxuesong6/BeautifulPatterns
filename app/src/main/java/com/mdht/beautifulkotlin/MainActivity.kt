@@ -16,6 +16,10 @@ import com.mdht.beautifulkotlin.chainofresponsibility.java.BossJava
 import com.mdht.beautifulkotlin.chainofresponsibility.java.DirectorJava
 import com.mdht.beautifulkotlin.chainofresponsibility.java.GroupLeaderJava
 import com.mdht.beautifulkotlin.chainofresponsibility.java.ManagerJava
+import com.mdht.beautifulkotlin.chainofresponsibility.kotlin.BossKotlin
+import com.mdht.beautifulkotlin.chainofresponsibility.kotlin.DirectorKotlin
+import com.mdht.beautifulkotlin.chainofresponsibility.kotlin.GroupLeaderKotlin
+import com.mdht.beautifulkotlin.chainofresponsibility.kotlin.ManagerKotlin
 import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
 import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
@@ -146,6 +150,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 directorJava.nextHandler = managerJava
                 managerJava.nextHandler = bossJava
                 groupLeaderJava.handleRequest(50000)
+
+                val groupLeaderKotlin = GroupLeaderKotlin()
+                val directorKotlin = DirectorKotlin()
+                val managerKotlin = ManagerKotlin()
+                val bossKotlin = BossKotlin()
+
+                groupLeaderKotlin.nextHandler = directorKotlin
+                directorKotlin.nextHandler = managerKotlin
+                managerKotlin.nextHandler = bossKotlin
+
+                groupLeaderKotlin.handleRequest(6000)
             }
 
         }
