@@ -1,15 +1,24 @@
 package com.mdht.beautifulkotlin.state.kotlin
 
 class LoginContextKotlin {
-    private var userStateKotlin: UserStateKotlin = UserStateKotlin.LogoutStateKotlin
-    fun setState(userStateKotlin: UserStateKotlin) {
+    private lateinit var userStateKotlin: UserStateKotlin
+    private fun setState(userStateKotlin: UserStateKotlin) {
         this.userStateKotlin = userStateKotlin
     }
 
     fun comment() {
         userStateKotlin.comment()
     }
-    fun forward(){
+
+    fun forward() {
         userStateKotlin.forward()
+    }
+
+    fun login() {
+        userStateKotlin = UserStateKotlin.LoginedStateKotlin
+    }
+
+    fun logout() {
+        userStateKotlin = UserStateKotlin.LogoutStateKotlin
     }
 }

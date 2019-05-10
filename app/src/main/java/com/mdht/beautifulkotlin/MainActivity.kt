@@ -24,9 +24,7 @@ import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
 import com.mdht.beautifulkotlin.singleton.SingletonInnerKotlin
 import com.mdht.beautifulkotlin.state.java.LoginContextJava
-import com.mdht.beautifulkotlin.state.java.LogoutStateJava
 import com.mdht.beautifulkotlin.state.kotlin.LoginContextKotlin
-import com.mdht.beautifulkotlin.state.kotlin.UserStateKotlin
 import com.mdht.beautifulkotlin.strategy.java.EatManagerJava
 import com.mdht.beautifulkotlin.strategy.java.SheepJava
 import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
@@ -123,11 +121,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tv_state -> {
                 val loginContextJava = LoginContextJava()
-                loginContextJava.setState(LogoutStateJava())
+                loginContextJava.logout()
                 loginContextJava.forward()
 
                 val loginContextKotlin = LoginContextKotlin()
-                loginContextKotlin.setState(UserStateKotlin.LoginedStateKotlin)
+                loginContextKotlin.login()
                 loginContextKotlin.comment()
             }
 

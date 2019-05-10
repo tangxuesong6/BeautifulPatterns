@@ -1,10 +1,18 @@
 package com.mdht.beautifulkotlin.state.java;
 
 public class LoginContextJava {
-    private UserStateJava userStateJava = new LogoutStateJava();
+    private UserStateJava userStateJava;
 
-    public void setState(UserStateJava userStateJava) {
+    private void setState(UserStateJava userStateJava) {
         this.userStateJava = userStateJava;
+    }
+
+    public void login() {
+        setState(new LoginedStateJava());
+    }
+
+    public void logout() {
+        setState(new LogoutStateJava());
     }
 
     public void forward() {
