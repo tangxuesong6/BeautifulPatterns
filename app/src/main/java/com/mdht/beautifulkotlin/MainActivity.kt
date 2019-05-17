@@ -27,6 +27,8 @@ import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
 import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
+import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
+import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvStrategy: TextView
     private lateinit var mTvState: TextView
     private lateinit var mTvChainOfResponsibility: TextView
+    private lateinit var mTvInterpreter: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +66,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvStrategy = findViewById<TextView>(R.id.tv_strategy)
         mTvState = findViewById<TextView>(R.id.tv_state)
         mTvChainOfResponsibility = findViewById<TextView>(R.id.tv_chain_of_responsibility)
+        mTvInterpreter = findViewById<TextView>(R.id.tv_interpreter)
     }
 
     private fun initListener() {
@@ -74,6 +78,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvStrategy.setOnClickListener(this)
         mTvState.setOnClickListener(this)
         mTvChainOfResponsibility.setOnClickListener(this)
+        mTvInterpreter.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -161,6 +166,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 managerKotlin.nextHandler = bossKotlin
 
                 groupLeaderKotlin.handleRequest(6000)
+            }
+            R.id.tv_interpreter -> {
+                val calculatorJava = CalculatorJava("1 + 2 + 3")
+                val calculatorKotlin= CalculatorKotlin("2 + 3 + 4 + 1")
+                Log.d("MainActivity","CalculatorKotlin------${calculatorKotlin.calculate()}")
             }
 
         }
