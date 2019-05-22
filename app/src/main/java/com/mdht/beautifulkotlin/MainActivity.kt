@@ -27,6 +27,10 @@ import com.mdht.beautifulkotlin.command.java.AddCommandJava
 import com.mdht.beautifulkotlin.command.java.InvokerJava
 import com.mdht.beautifulkotlin.command.java.ReceiverJava
 import com.mdht.beautifulkotlin.command.java.RemoveCommandJava
+import com.mdht.beautifulkotlin.command.kotlin.AddCommandKotlin
+import com.mdht.beautifulkotlin.command.kotlin.InvokerKotlin
+import com.mdht.beautifulkotlin.command.kotlin.ReceiverKotlin
+import com.mdht.beautifulkotlin.command.kotlin.RemoveCommandKotlin
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -174,8 +178,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tv_interpreter -> {
                 val calculatorJava = CalculatorJava("1 + 2 + 3")
-                val calculatorKotlin= CalculatorKotlin("2 + 3 + 4 + 1")
-                Log.d("MainActivity","CalculatorKotlin------${calculatorKotlin.calculate()}")
+                val calculatorKotlin = CalculatorKotlin("2 + 3 + 4 + 1")
+                Log.d("MainActivity", "CalculatorKotlin------${calculatorKotlin.calculate()}")
             }
             R.id.tv_command -> {
                 val invokerJava = InvokerJava()
@@ -185,6 +189,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 invokerJava.setAddCommand(AddCommandJava(receiverJava))
                 invokerJava.undo()
                 invokerJava.processCommands()
+
+                val invokerKotlin = InvokerKotlin()
+                val receiverKotlin = ReceiverKotlin()
+                invokerKotlin.setAddCommand(AddCommandKotlin(receiverKotlin))
+                invokerKotlin.setRemoveCommand(RemoveCommandKotlin(receiverKotlin))
+                invokerKotlin.setAddCommand(AddCommandKotlin(receiverKotlin))
+                invokerKotlin.undo()
+                invokerKotlin.processCommands()
             }
 
         }
