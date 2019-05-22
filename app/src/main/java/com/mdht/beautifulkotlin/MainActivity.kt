@@ -23,6 +23,10 @@ import com.mdht.beautifulkotlin.chainofresponsibility.kotlin.ManagerKotlin
 import com.mdht.beautifulkotlin.cloneable.WordDocumentJava
 import com.mdht.beautifulkotlin.cloneable.WordDocumentKotlin
 import com.mdht.beautifulkotlin.cloneable.WorldDocumentKotlinCopy
+import com.mdht.beautifulkotlin.command.java.AddCommandJava
+import com.mdht.beautifulkotlin.command.java.InvokerJava
+import com.mdht.beautifulkotlin.command.java.ReceiverJava
+import com.mdht.beautifulkotlin.command.java.RemoveCommandJava
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -49,6 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvState: TextView
     private lateinit var mTvChainOfResponsibility: TextView
     private lateinit var mTvInterpreter: TextView
+    private lateinit var mTvCommand: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvState = findViewById<TextView>(R.id.tv_state)
         mTvChainOfResponsibility = findViewById<TextView>(R.id.tv_chain_of_responsibility)
         mTvInterpreter = findViewById<TextView>(R.id.tv_interpreter)
+        mTvCommand = findViewById<TextView>(R.id.tv_command)
     }
 
     private fun initListener() {
@@ -79,6 +85,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvState.setOnClickListener(this)
         mTvChainOfResponsibility.setOnClickListener(this)
         mTvInterpreter.setOnClickListener(this)
+        mTvCommand.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -129,7 +136,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val strJava = eatManagerJava.eat("Judy")
                 Log.d("MainActivity", strJava)
 
-
                 val dog: (String) -> String = { "Dog: " + it + "在吃东西，汪旺旺" }
                 val sheep: (String) -> String = { "Sheep: " + it + "在吃东西，咩咩咩" }
                 val manager = EatManagerKotlin(dog)
@@ -164,13 +170,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 groupLeaderKotlin.nextHandler = directorKotlin
                 directorKotlin.nextHandler = managerKotlin
                 managerKotlin.nextHandler = bossKotlin
-
                 groupLeaderKotlin.handleRequest(6000)
             }
             R.id.tv_interpreter -> {
                 val calculatorJava = CalculatorJava("1 + 2 + 3")
                 val calculatorKotlin= CalculatorKotlin("2 + 3 + 4 + 1")
                 Log.d("MainActivity","CalculatorKotlin------${calculatorKotlin.calculate()}")
+            }
+            R.id.tv_command -> {
+                val invokerJava = InvokerJava()
+                val receiverJava = ReceiverJava()
+                invokerJava.setAddCommand(AddCommandJava(receiverJava))
+                invokerJava.setRemoveCommand(RemoveCommandJava(receiverJava))
+                invokerJava.setAddCommand(AddCommandJava(receiverJava))
+                invokerJava.undo()
+                invokerJava.processCommands()
             }
 
         }
