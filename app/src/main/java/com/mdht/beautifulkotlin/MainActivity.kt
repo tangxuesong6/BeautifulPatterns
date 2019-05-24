@@ -37,6 +37,10 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
 import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
+import com.mdht.beautifulkotlin.observer.java.CoderJava
+import com.mdht.beautifulkotlin.observer.java.DevTechFrontierJava
+import com.mdht.beautifulkotlin.observer.kotlin.CoderKotlin
+import com.mdht.beautifulkotlin.observer.kotlin.DevTechFrontierKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -58,6 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvChainOfResponsibility: TextView
     private lateinit var mTvInterpreter: TextView
     private lateinit var mTvCommand: TextView
+    private lateinit var mTvObserver: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +82,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvChainOfResponsibility = findViewById<TextView>(R.id.tv_chain_of_responsibility)
         mTvInterpreter = findViewById<TextView>(R.id.tv_interpreter)
         mTvCommand = findViewById<TextView>(R.id.tv_command)
+        mTvObserver = findViewById<TextView>(R.id.tv_observer)
     }
 
     private fun initListener() {
@@ -90,6 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvChainOfResponsibility.setOnClickListener(this)
         mTvInterpreter.setOnClickListener(this)
         mTvCommand.setOnClickListener(this)
+        mTvObserver.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -197,6 +204,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 invokerKotlin.setAddCommand(AddCommandKotlin(receiverKotlin))
                 invokerKotlin.undo()
                 invokerKotlin.processCommands()
+            }
+            R.id.tv_observer -> {
+                val devtechFrontierJava = DevTechFrontierJava()
+                val coderJava1 = CoderJava("coder-1")
+                val coderJava2 = CoderJava("coder-2")
+                val coderJava3 = CoderJava("coder-3")
+                devtechFrontierJava.addObserver(coderJava1)
+                devtechFrontierJava.addObserver(coderJava2)
+                devtechFrontierJava.addObserver(coderJava3)
+                devtechFrontierJava.postNewPublication("发布啦!")
+
+                val devTechFrontierKotlin = DevTechFrontierKotlin()
+                devTechFrontierKotlin.addMyObserver(CoderKotlin("coder-1"))
+                devTechFrontierKotlin.addMyObserver(CoderKotlin("coder-2"))
+                devTechFrontierKotlin.postNewPublication = "又发布啦"
+
+
             }
 
         }

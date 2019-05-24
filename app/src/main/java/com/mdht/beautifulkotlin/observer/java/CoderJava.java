@@ -1,4 +1,4 @@
-package com.mdht.beautifulkotlin.observer;
+package com.mdht.beautifulkotlin.observer.java;
 
 import android.util.Log;
 
