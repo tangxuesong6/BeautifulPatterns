@@ -37,7 +37,6 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
 import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
-import com.mdht.beautifulkotlin.iterator.java.ConcreteAggregateJava
 import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
@@ -56,12 +55,12 @@ import com.mdht.beautifulkotlin.state.kotlin.LoginContextKotlin
 import com.mdht.beautifulkotlin.strategy.java.EatManagerJava
 import com.mdht.beautifulkotlin.strategy.java.SheepJava
 import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
-import com.mdht.beautifulkotlin.template.java.AbstractComputerJava
-import com.mdht.beautifulkotlin.template.java.CoderComputerJava
-import com.mdht.beautifulkotlin.template.java.MilitaryComputerJava
 import com.mdht.beautifulkotlin.template.kotlin.AbstractComputerKotlin
 import com.mdht.beautifulkotlin.template.kotlin.CoderComputerKotlin
 import com.mdht.beautifulkotlin.template.kotlin.MilitaryComputerKotlin
+import com.mdht.beautifulkotlin.visitor.java.BusinessReportJava
+import com.mdht.beautifulkotlin.visitor.java.CEOVisitorJava
+import com.mdht.beautifulkotlin.visitor.java.CTOVisitorJava
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -78,6 +77,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvMemento: TextView
     private lateinit var mTvIterator: TextView
     private lateinit var mTvTemplate: TextView
+    private lateinit var mTvVisitor: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -100,6 +101,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvMemento = findViewById<TextView>(R.id.tv_memento)
         mTvIterator = findViewById<TextView>(R.id.tv_iterator)
         mTvTemplate = findViewById<TextView>(R.id.tv_template)
+        mTvVisitor = findViewById<TextView>(R.id.tv_visitor)
     }
 
     private fun initListener() {
@@ -117,6 +119,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvMemento.setOnClickListener(this)
         mTvIterator.setOnClickListener(this)
         mTvTemplate.setOnClickListener(this)
+        mTvVisitor.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -277,15 +280,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     add("brother")
                 }
                 val iteratorKotlin = aggregateKotlin.iterator()
-                while (iteratorKotlin.hasNext()){
+                while (iteratorKotlin.hasNext()) {
                     Log.d("MainActivity", "Result is :" + iteratorKotlin.next())
                 }
             }
             R.id.tv_template -> {
-                var compKotlin:AbstractComputerKotlin = CoderComputerKotlin()
+                var compKotlin: AbstractComputerKotlin = CoderComputerKotlin()
                 compKotlin.startUp()
                 compKotlin = MilitaryComputerKotlin()
                 compKotlin.startUp()
+            }
+            R.id.tv_visitor -> {
+                val reportJava = BusinessReportJava()
+                Log.d("MainActivity", "======TO CEO ======")
+                reportJava.showReport(CEOVisitorJava())
+                Log.d("MainActivity", "======TO CTO ======")
+                reportJava.showReport(CTOVisitorJava())
             }
 
         }
