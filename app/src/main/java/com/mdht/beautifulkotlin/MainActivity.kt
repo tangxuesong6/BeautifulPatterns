@@ -61,6 +61,9 @@ import com.mdht.beautifulkotlin.template.kotlin.MilitaryComputerKotlin
 import com.mdht.beautifulkotlin.visitor.java.BusinessReportJava
 import com.mdht.beautifulkotlin.visitor.java.CEOVisitorJava
 import com.mdht.beautifulkotlin.visitor.java.CTOVisitorJava
+import com.mdht.beautifulkotlin.visitor.kotlin.BusinessReportKotlin
+import com.mdht.beautifulkotlin.visitor.kotlin.CEOVisitorKotlin
+import com.mdht.beautifulkotlin.visitor.kotlin.CTOVisitorKotlin
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -291,11 +294,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 compKotlin.startUp()
             }
             R.id.tv_visitor -> {
-                val reportJava = BusinessReportJava()
+                val reportKotlin = BusinessReportKotlin()
                 Log.d("MainActivity", "======TO CEO ======")
-                reportJava.showReport(CEOVisitorJava())
+                reportKotlin.showReport(CEOVisitorKotlin())
                 Log.d("MainActivity", "======TO CTO ======")
-                reportJava.showReport(CTOVisitorJava())
+                reportKotlin.showReport(CTOVisitorKotlin())
             }
 
         }
