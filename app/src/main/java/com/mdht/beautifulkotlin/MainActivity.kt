@@ -38,6 +38,7 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.iterator.java.ConcreteAggregateJava
+import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
 import com.mdht.beautifulkotlin.memento.kotlin.CareTakerKotlin
@@ -260,17 +261,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             }
             R.id.tv_iterator -> {
-                val aggregateJava = ConcreteAggregateJava<String>()
-                aggregateJava.apply {
-                    add("Aige")
-                    add("Studio\n")
-                    add("SM")
-                    add("Brother")
+                val aggregateKotlin = ConcreteAggregateKotlin<String>()
+                aggregateKotlin.apply {
+                    add("Hi")
+                    add("Kotlin")
+                    add("brother")
                 }
-                val iteratorJava = aggregateJava.iterator()
-                while (iteratorJava.hasNext()){
-                    Log.d("MainActivity", "Result is :" + iteratorJava.next())
-                }
+//                val aggregateJava = ConcreteAggregateJava<String>()
+//                aggregateJava.apply {
+//                    add("Aige")
+//                    add("Studio\n")
+//                    add("SM")
+//                    add("Brother")
+//                }
+//                val iteratorJava = aggregateJava.iterator()
+//                while (iteratorJava.hasNext()){
+//                    Log.d("MainActivity", "Result is :" + iteratorJava.next())
+//                }
             }
 
         }
