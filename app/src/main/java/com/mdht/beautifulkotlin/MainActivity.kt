@@ -37,6 +37,7 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
 import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
+import com.mdht.beautifulkotlin.iterator.java.ConcreteAggregateJava
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
 import com.mdht.beautifulkotlin.memento.kotlin.CareTakerKotlin
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvCommand: TextView
     private lateinit var mTvObserver: TextView
     private lateinit var mTvMemento: TextView
+    private lateinit var mTvIterator: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -88,6 +90,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvCommand = findViewById<TextView>(R.id.tv_command)
         mTvObserver = findViewById<TextView>(R.id.tv_observer)
         mTvMemento = findViewById<TextView>(R.id.tv_memento)
+        mTvIterator = findViewById<TextView>(R.id.tv_iterator)
     }
 
     private fun initListener() {
@@ -103,6 +106,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvCommand.setOnClickListener(this)
         mTvObserver.setOnClickListener(this)
         mTvMemento.setOnClickListener(this)
+        mTvIterator.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -235,11 +239,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 careTakerJava.saveState(originatorJava.createMemento())
                 originatorJava.state = "State #2"
                 careTakerJava.saveState(originatorJava.createMemento())
-                Log.d("MainActivity","Current State:"+originatorJava.state)
+                Log.d("MainActivity", "Current State:" + originatorJava.state)
                 originatorJava.restore(careTakerJava.restore(1))
-                Log.d("MainActivity","Second saved state:"+originatorJava.state)
+                Log.d("MainActivity", "Second saved state:" + originatorJava.state)
                 originatorJava.restore(careTakerJava.restore(0))
-                Log.d("MainActivity","First saved state:"+originatorJava.state)
+                Log.d("MainActivity", "First saved state:" + originatorJava.state)
 
                 val originKotlin = OriginatorKotlin("initial state")
                 val careTaKerKotlin = CareTakerKotlin()
@@ -248,12 +252,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 careTaKerKotlin.saveState(originKotlin.createMemento())
                 originKotlin.state = "State6"
                 careTaKerKotlin.saveState(originKotlin.createMemento())
-                Log.d("MainActivity","Current State:"+originKotlin.state)
+                Log.d("MainActivity", "Current State:" + originKotlin.state)
                 originKotlin.restore(careTaKerKotlin.restore(1))
-                Log.d("MainActivity","Second saved state:"+originKotlin.state)
+                Log.d("MainActivity", "Second saved state:" + originKotlin.state)
                 originKotlin.restore(careTaKerKotlin.restore(0))
-                Log.d("MainActivity","First saved state:"+originKotlin.state)
+                Log.d("MainActivity", "First saved state:" + originKotlin.state)
 
+            }
+            R.id.tv_iterator -> {
+                val aggregateJava = ConcreteAggregateJava<String>()
+                aggregateJava.apply {
+                    add("Aige")
+                    add("Studio\n")
+                    add("SM")
+                    add("Brother")
+                }
+                val iteratorJava = aggregateJava.iterator()
+                while (iteratorJava.hasNext()){
+                    Log.d("MainActivity", "Result is :" + iteratorJava.next())
+                }
             }
 
         }
