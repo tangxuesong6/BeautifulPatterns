@@ -56,6 +56,9 @@ import com.mdht.beautifulkotlin.state.kotlin.LoginContextKotlin
 import com.mdht.beautifulkotlin.strategy.java.EatManagerJava
 import com.mdht.beautifulkotlin.strategy.java.SheepJava
 import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
+import com.mdht.beautifulkotlin.template.java.AbstractComputerJava
+import com.mdht.beautifulkotlin.template.java.CoderComputerJava
+import com.mdht.beautifulkotlin.template.java.MilitaryComputerJava
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -71,6 +74,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvObserver: TextView
     private lateinit var mTvMemento: TextView
     private lateinit var mTvIterator: TextView
+    private lateinit var mTvTemplate: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -92,6 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvObserver = findViewById<TextView>(R.id.tv_observer)
         mTvMemento = findViewById<TextView>(R.id.tv_memento)
         mTvIterator = findViewById<TextView>(R.id.tv_iterator)
+        mTvTemplate = findViewById<TextView>(R.id.tv_template)
     }
 
     private fun initListener() {
@@ -108,6 +113,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvObserver.setOnClickListener(this)
         mTvMemento.setOnClickListener(this)
         mTvIterator.setOnClickListener(this)
+        mTvTemplate.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -267,17 +273,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     add("Kotlin")
                     add("brother")
                 }
-//                val aggregateJava = ConcreteAggregateJava<String>()
-//                aggregateJava.apply {
-//                    add("Aige")
-//                    add("Studio\n")
-//                    add("SM")
-//                    add("Brother")
-//                }
-//                val iteratorJava = aggregateJava.iterator()
-//                while (iteratorJava.hasNext()){
-//                    Log.d("MainActivity", "Result is :" + iteratorJava.next())
-//                }
+                val iteratorKotlin = aggregateKotlin.iterator()
+                while (iteratorKotlin.hasNext()){
+                    Log.d("MainActivity", "Result is :" + iteratorKotlin.next())
+                }
+            }
+            R.id.tv_template -> {
+                var compJava:AbstractComputerJava = CoderComputerJava()
+                compJava.startUP()
+                compJava = MilitaryComputerJava()
+                compJava.startUP()
             }
 
         }
