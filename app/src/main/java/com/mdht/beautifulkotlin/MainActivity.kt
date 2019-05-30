@@ -59,6 +59,9 @@ import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
 import com.mdht.beautifulkotlin.template.java.AbstractComputerJava
 import com.mdht.beautifulkotlin.template.java.CoderComputerJava
 import com.mdht.beautifulkotlin.template.java.MilitaryComputerJava
+import com.mdht.beautifulkotlin.template.kotlin.AbstractComputerKotlin
+import com.mdht.beautifulkotlin.template.kotlin.CoderComputerKotlin
+import com.mdht.beautifulkotlin.template.kotlin.MilitaryComputerKotlin
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -279,10 +282,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
             R.id.tv_template -> {
-                var compJava:AbstractComputerJava = CoderComputerJava()
-                compJava.startUP()
-                compJava = MilitaryComputerJava()
-                compJava.startUP()
+                var compKotlin:AbstractComputerKotlin = CoderComputerKotlin()
+                compKotlin.startUp()
+                compKotlin = MilitaryComputerKotlin()
+                compKotlin.startUp()
             }
 
         }
