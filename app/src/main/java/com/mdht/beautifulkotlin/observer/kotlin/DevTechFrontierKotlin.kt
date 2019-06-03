@@ -4,7 +4,6 @@ import kotlin.properties.Delegates
 
 /**
  * Author: txs
- * Date: 19-5-22 下午7:39
  * Package:com.mdht.beautifulkotlin.observer.kotlin
  */
 class DevTechFrontierKotlin {

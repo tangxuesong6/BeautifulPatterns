@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.visitor.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-30 下午8:18
  * Package:com.mdht.beautifulkotlin.visitor.kotlin
  */
 class BusinessReportKotlin {

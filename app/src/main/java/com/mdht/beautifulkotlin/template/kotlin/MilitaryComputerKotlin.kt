@@ -4,7 +4,6 @@ import android.util.Log
 
 /**
  * Author: txs
- * Date: 19-5-30 下午4:56
  * Package:com.mdht.beautifulkotlin.template.kotlin
  */
 class MilitaryComputerKotlin : AbstractComputerKotlin() {

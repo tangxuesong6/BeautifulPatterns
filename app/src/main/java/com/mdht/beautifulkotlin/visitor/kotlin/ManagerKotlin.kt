@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.visitor.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-30 下午8:14
  * Package:com.mdht.beautifulkotlin.visitor.kotlin
  */
 class ManagerKotlin(name: String) : StaffKotlin(name) {

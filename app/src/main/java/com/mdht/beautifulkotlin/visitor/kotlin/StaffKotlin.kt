@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.visitor.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-30 下午7:52
  * Package:com.mdht.beautifulkotlin.visitor.kotlin
  */
 abstract class StaffKotlin(val name: String) {

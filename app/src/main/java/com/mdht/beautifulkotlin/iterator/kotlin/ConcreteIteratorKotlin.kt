@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.iterator.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-30 下午12:06
  * Package:com.mdht.beautifulkotlin.iterator.kotlin
  */
 class ConcreteIteratorKotlin<out T>(val list: List<T>) : IteratorKotlin<T> {

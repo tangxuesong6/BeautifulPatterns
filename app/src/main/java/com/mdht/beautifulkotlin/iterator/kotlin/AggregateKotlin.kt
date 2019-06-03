@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.iterator.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-30 下午12:25
  * Package:com.mdht.beautifulkotlin.iterator.kotlin
  */
 interface AggregateKotlin<T> {

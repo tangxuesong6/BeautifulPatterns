@@ -39,6 +39,7 @@ import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
 import com.mdht.beautifulkotlin.mediator.java.*
+import com.mdht.beautifulkotlin.mediator.kotlin.*
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
 import com.mdht.beautifulkotlin.memento.kotlin.CareTakerKotlin
@@ -302,17 +303,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 reportKotlin.showReport(CTOVisitorKotlin())
             }
             R.id.tv_mediator -> {
-                val mainBoardJava = MainBoardJava()
-                val cd = CDDeviceJava(mainBoardJava)
-                val cpu = CPUJava(mainBoardJava)
-                val vc = GraphicsCardJava(mainBoardJava)
-                val sc = SoundCardJava(mainBoardJava)
-
-                mainBoardJava.setCDDevice(cd)
-                mainBoardJava.setCPU(cpu)
-                mainBoardJava.setGraphicsCard(vc)
-                mainBoardJava.setSoundCard(sc)
+                val mainBoardKotlin = MainBoardKotlin()
+                val cd = CDDevicesKotlin(mainBoardKotlin)
+                val cpu = CPUKotlin(mainBoardKotlin)
+                val vc = GraphicsCardKotlin(mainBoardKotlin)
+                val sc = SoundCardKotlin(mainBoardKotlin)
+                mainBoardKotlin.cdDevices = cd
+                mainBoardKotlin.cpu = cpu
+                mainBoardKotlin.graphicsCardKotlin = vc
+                mainBoardKotlin.soundCard = sc
                 cd.load()
+//                val mainBoardJava = MainBoardJava()
+//                val cd = CDDeviceJava(mainBoardJava)
+//                val cpu = CPUJava(mainBoardJava)
+//                val vc = GraphicsCardJava(mainBoardJava)
+//                val sc = SoundCardJava(mainBoardJava)
+//
+//                mainBoardJava.setCDDevice(cd)
+//                mainBoardJava.setCPU(cpu)
+//                mainBoardJava.setGraphicsCard(vc)
+//                mainBoardJava.setSoundCard(sc)
+//                cd.load()
             }
 
         }

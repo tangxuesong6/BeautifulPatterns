@@ -4,7 +4,6 @@ import kotlin.random.Random
 
 /**
  * Author: txs
- * Date: 19-5-30 下午7:59
  * Package:com.mdht.beautifulkotlin.visitor.kotlin
  */
 class EngineerKotlin(name: String) : StaffKotlin(name) {

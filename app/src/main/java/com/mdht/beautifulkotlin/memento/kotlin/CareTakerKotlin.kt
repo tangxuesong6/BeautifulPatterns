@@ -2,7 +2,6 @@ package com.mdht.beautifulkotlin.memento.kotlin
 
 /**
  * Author: txs
- * Date: 19-5-24 下午2:28
  * Package:com.mdht.beautifulkotlin.memento.kotlin
  */
 class CareTakerKotlin {

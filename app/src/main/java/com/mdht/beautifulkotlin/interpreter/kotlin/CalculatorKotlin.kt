@@ -4,7 +4,6 @@ import java.util.*
 
 /**
  * Author: txs
- * Date: 19-5-16 下午9:24
  * Package:com.mdht.beautifulkotlin.interpreter.kotlin
  */
 class CalculatorKotlin(expression: String) {

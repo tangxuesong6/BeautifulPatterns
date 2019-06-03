@@ -4,7 +4,6 @@ import android.util.Log
 
 /**
  * Author: txs
- * Date: 19-5-30 下午8:22
  * Package:com.mdht.beautifulkotlin.visitor.kotlin
  */
 class CEOVisitorKotlin : VisitorKotlin {
