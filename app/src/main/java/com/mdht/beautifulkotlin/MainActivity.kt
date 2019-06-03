@@ -38,6 +38,7 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
+import com.mdht.beautifulkotlin.mediator.java.*
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
 import com.mdht.beautifulkotlin.memento.kotlin.CareTakerKotlin
@@ -58,9 +59,6 @@ import com.mdht.beautifulkotlin.strategy.kotlin.EatManagerKotlin
 import com.mdht.beautifulkotlin.template.kotlin.AbstractComputerKotlin
 import com.mdht.beautifulkotlin.template.kotlin.CoderComputerKotlin
 import com.mdht.beautifulkotlin.template.kotlin.MilitaryComputerKotlin
-import com.mdht.beautifulkotlin.visitor.java.BusinessReportJava
-import com.mdht.beautifulkotlin.visitor.java.CEOVisitorJava
-import com.mdht.beautifulkotlin.visitor.java.CTOVisitorJava
 import com.mdht.beautifulkotlin.visitor.kotlin.BusinessReportKotlin
 import com.mdht.beautifulkotlin.visitor.kotlin.CEOVisitorKotlin
 import com.mdht.beautifulkotlin.visitor.kotlin.CTOVisitorKotlin
@@ -81,6 +79,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvIterator: TextView
     private lateinit var mTvTemplate: TextView
     private lateinit var mTvVisitor: TextView
+    private lateinit var mTvMediator: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,6 +104,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvIterator = findViewById<TextView>(R.id.tv_iterator)
         mTvTemplate = findViewById<TextView>(R.id.tv_template)
         mTvVisitor = findViewById<TextView>(R.id.tv_visitor)
+        mTvMediator = findViewById<TextView>(R.id.tv_mediator)
     }
 
     private fun initListener() {
@@ -123,6 +123,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvIterator.setOnClickListener(this)
         mTvTemplate.setOnClickListener(this)
         mTvVisitor.setOnClickListener(this)
+        mTvMediator.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -299,6 +300,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 reportKotlin.showReport(CEOVisitorKotlin())
                 Log.d("MainActivity", "======TO CTO ======")
                 reportKotlin.showReport(CTOVisitorKotlin())
+            }
+            R.id.tv_mediator -> {
+                val mainBoardJava = MainBoardJava()
+                val cd = CDDeviceJava(mainBoardJava)
+                val cpu = CPUJava(mainBoardJava)
+                val vc = GraphicsCardJava(mainBoardJava)
+                val sc = SoundCardJava(mainBoardJava)
+
+                mainBoardJava.setCDDevice(cd)
+                mainBoardJava.setCPU(cpu)
+                mainBoardJava.setGraphicsCard(vc)
+                mainBoardJava.setSoundCard(sc)
+                cd.load()
             }
 
         }
