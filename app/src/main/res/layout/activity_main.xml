@@ -183,6 +183,16 @@
                     android:background="#C0B33F"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+            <TextView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/tv_proxy"
+                    android:text="代理模式"
+                    android:gravity="center"
+                    android:textColor="#fff"
+                    android:minHeight="45dp"
+                    android:background="#C0B33F"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
 
 

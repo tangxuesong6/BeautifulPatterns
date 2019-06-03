@@ -38,7 +38,6 @@ import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
-import com.mdht.beautifulkotlin.mediator.java.*
 import com.mdht.beautifulkotlin.mediator.kotlin.*
 import com.mdht.beautifulkotlin.memento.java.CareTakerJava
 import com.mdht.beautifulkotlin.memento.java.OriginatorJava
@@ -48,6 +47,14 @@ import com.mdht.beautifulkotlin.observer.java.CoderJava
 import com.mdht.beautifulkotlin.observer.java.DevTechFrontierJava
 import com.mdht.beautifulkotlin.observer.kotlin.CoderKotlin
 import com.mdht.beautifulkotlin.observer.kotlin.DevTechFrontierKotlin
+import com.mdht.beautifulkotlin.proxy.java.ILawsuitJava
+import com.mdht.beautifulkotlin.proxy.java.LawyerJava
+import com.mdht.beautifulkotlin.proxy.java.XiaoMinJava
+import com.mdht.beautifulkotlin.proxy.kotlin.DynamicProxyKotlin
+import com.mdht.beautifulkotlin.proxy.kotlin.ILawsuitKotlin
+import com.mdht.beautifulkotlin.proxy.kotlin.XiaoMinKotlin
+import com.mdht.beautifulkotlin.proxy.kotlin.delegation.LawyerDelegation
+import com.mdht.beautifulkotlin.proxy.kotlin.delegation.XiaominDelegation
 import com.mdht.beautifulkotlin.singleton.SingletonEnumJava
 import com.mdht.beautifulkotlin.singleton.SingletonEnumKotlin
 import com.mdht.beautifulkotlin.singleton.SingletonInnerJava
@@ -63,6 +70,7 @@ import com.mdht.beautifulkotlin.template.kotlin.MilitaryComputerKotlin
 import com.mdht.beautifulkotlin.visitor.kotlin.BusinessReportKotlin
 import com.mdht.beautifulkotlin.visitor.kotlin.CEOVisitorKotlin
 import com.mdht.beautifulkotlin.visitor.kotlin.CTOVisitorKotlin
+import java.lang.reflect.Proxy
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvBuilder: TextView
@@ -81,6 +89,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvTemplate: TextView
     private lateinit var mTvVisitor: TextView
     private lateinit var mTvMediator: TextView
+    private lateinit var mTvProxy: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,6 +115,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvTemplate = findViewById<TextView>(R.id.tv_template)
         mTvVisitor = findViewById<TextView>(R.id.tv_visitor)
         mTvMediator = findViewById<TextView>(R.id.tv_mediator)
+        mTvProxy = findViewById<TextView>(R.id.tv_proxy)
     }
 
     private fun initListener() {
@@ -125,6 +135,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvTemplate.setOnClickListener(this)
         mTvVisitor.setOnClickListener(this)
         mTvMediator.setOnClickListener(this)
+        mTvProxy.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -324,6 +335,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //                mainBoardJava.setGraphicsCard(vc)
 //                mainBoardJava.setSoundCard(sc)
 //                cd.load()
+            }
+            R.id.tv_proxy -> {
+                //静态代理
+                val xiaoMinJava: ILawsuitJava = XiaoMinJava()
+                val lawyerJava = LawyerJava(xiaoMinJava)
+                lawyerJava.submit()
+                lawyerJava.burden()
+                lawyerJava.defend()
+                lawyerJava.finish()
+                //动态代理
+                val xiaoMinKotlin:ILawsuitKotlin = XiaoMinKotlin()
+                val proxy = DynamicProxyKotlin(xiaoMinKotlin)
+                val classLoader = xiaoMinKotlin.javaClass.classLoader
+                val lawyerKotlin = Proxy.newProxyInstance(classLoader, arrayOf<Class<*>>(ILawsuitKotlin::class.java),proxy) as ILawsuitKotlin
+                lawyerKotlin.submit()
+                lawyerKotlin.burden()
+                lawyerKotlin.defend()
+                lawyerKotlin.finish()
+                //类委托 kotlin特性 可以当做是静态代理
+                val xiaoMinDelegation = XiaominDelegation()
+                val lawyerDelegation = LawyerDelegation(xiaoMinDelegation)
+                lawyerDelegation.submit()
+                lawyerDelegation.burden()
+                lawyerDelegation.defend()
+                lawyerDelegation.finish()
             }
 
         }
