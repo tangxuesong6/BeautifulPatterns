@@ -31,6 +31,8 @@ import com.mdht.beautifulkotlin.command.kotlin.AddCommandKotlin
 import com.mdht.beautifulkotlin.command.kotlin.InvokerKotlin
 import com.mdht.beautifulkotlin.command.kotlin.ReceiverKotlin
 import com.mdht.beautifulkotlin.command.kotlin.RemoveCommandKotlin
+import com.mdht.beautifulkotlin.composite.CompositeJava
+import com.mdht.beautifulkotlin.composite.LeafJava
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvVisitor: TextView
     private lateinit var mTvMediator: TextView
     private lateinit var mTvProxy: TextView
+    private lateinit var mTvComposite: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,6 +119,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvVisitor = findViewById<TextView>(R.id.tv_visitor)
         mTvMediator = findViewById<TextView>(R.id.tv_mediator)
         mTvProxy = findViewById<TextView>(R.id.tv_proxy)
+        mTvComposite = findViewById<TextView>(R.id.tv_composite)
     }
 
     private fun initListener() {
@@ -136,6 +140,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvVisitor.setOnClickListener(this)
         mTvMediator.setOnClickListener(this)
         mTvProxy.setOnClickListener(this)
+        mTvComposite.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -345,10 +350,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 lawyerJava.defend()
                 lawyerJava.finish()
                 //动态代理
-                val xiaoMinKotlin:ILawsuitKotlin = XiaoMinKotlin()
+                val xiaoMinKotlin: ILawsuitKotlin = XiaoMinKotlin()
                 val proxy = DynamicProxyKotlin(xiaoMinKotlin)
                 val classLoader = xiaoMinKotlin.javaClass.classLoader
-                val lawyerKotlin = Proxy.newProxyInstance(classLoader, arrayOf<Class<*>>(ILawsuitKotlin::class.java),proxy) as ILawsuitKotlin
+                val lawyerKotlin = Proxy.newProxyInstance(
+                    classLoader,
+                    arrayOf<Class<*>>(ILawsuitKotlin::class.java),
+                    proxy
+                ) as ILawsuitKotlin
                 lawyerKotlin.submit()
                 lawyerKotlin.burden()
                 lawyerKotlin.defend()
@@ -360,6 +369,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 lawyerDelegation.burden()
                 lawyerDelegation.defend()
                 lawyerDelegation.finish()
+            }
+            R.id.tv_composite -> {
+                val root = CompositeJava("Root")
+                val branch1 = CompositeJava("Branch1")
+                val branch2 = CompositeJava("Branch2")
+                val leaf1 = LeafJava("Leaf1")
+                val leaf2 = LeafJava("Leaf2")
+                branch1.addChild(leaf1)
+                branch2.addChild(leaf2)
+                root.addChild(branch1)
+                root.addChild(branch2)
+                root.doSomething()
             }
 
         }
