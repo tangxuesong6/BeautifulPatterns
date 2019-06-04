@@ -42,6 +42,8 @@ import com.mdht.beautifulkotlin.composite.kotlin.LeafKotlin
 import com.mdht.beautifulkotlin.decorator.java.BoyJava
 import com.mdht.beautifulkotlin.decorator.java.CheapClothJava
 import com.mdht.beautifulkotlin.decorator.java.PersonJava
+import com.mdht.beautifulkotlin.decorator.kotlin.BoyKotlin
+import com.mdht.beautifulkotlin.decorator.kotlin.ExpensiveClothKotlin
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -420,6 +422,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val personJava:PersonJava = BoyJava()
                 val clothCheapJava = CheapClothJava(personJava)
                 clothCheapJava.dressed()
+
+                val personKotlin = BoyKotlin()
+                val clothExpersiveKotlin = ExpensiveClothKotlin(personKotlin)
+                clothExpersiveKotlin.dressed()
             }
 
         }
