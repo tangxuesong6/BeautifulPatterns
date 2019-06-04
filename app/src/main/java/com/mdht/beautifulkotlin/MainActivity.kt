@@ -31,8 +31,10 @@ import com.mdht.beautifulkotlin.command.kotlin.AddCommandKotlin
 import com.mdht.beautifulkotlin.command.kotlin.InvokerKotlin
 import com.mdht.beautifulkotlin.command.kotlin.ReceiverKotlin
 import com.mdht.beautifulkotlin.command.kotlin.RemoveCommandKotlin
-import com.mdht.beautifulkotlin.composite.CompositeJava
-import com.mdht.beautifulkotlin.composite.LeafJava
+import com.mdht.beautifulkotlin.composite.java.CompositeJava
+import com.mdht.beautifulkotlin.composite.java.LeafJava
+import com.mdht.beautifulkotlin.composite.kotlin.CompositeKotlin
+import com.mdht.beautifulkotlin.composite.kotlin.LeafKotlin
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -381,6 +383,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 root.addChild(branch1)
                 root.addChild(branch2)
                 root.doSomething()
+
+                val rootK = CompositeKotlin("RootK")
+                val branch1K = CompositeKotlin("Branch1K")
+                val branch2K = CompositeKotlin("Branch2K")
+                val leaf1K = LeafKotlin("Leaf1K")
+                val leaf2K = LeafKotlin("leaf2K")
+                branch1K.addChild(leaf1K)
+                branch2K.addChild(leaf2K)
+                rootK.addChild(branch1K)
+                rootK.addChild(branch2K)
+                rootK.doSomething()
             }
 
         }

@@ -1,4 +1,4 @@
-package com.mdht.beautifulkotlin.composite;
+package com.mdht.beautifulkotlin.composite.java;
 
 import android.util.Log;
 

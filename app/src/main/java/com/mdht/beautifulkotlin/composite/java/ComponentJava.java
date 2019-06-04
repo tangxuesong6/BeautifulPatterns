@@ -1,4 +1,4 @@
-package com.mdht.beautifulkotlin.composite;
+package com.mdht.beautifulkotlin.composite.java;
 
 public abstract class ComponentJava {
     protected String name;
