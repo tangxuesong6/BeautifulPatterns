@@ -9,6 +9,10 @@ import com.mdht.beautifulkotlin.abstractfactory.java.CarFactoryJava
 import com.mdht.beautifulkotlin.abstractfactory.java.EnumFactoryJava
 import com.mdht.beautifulkotlin.abstractfactory.kotlin.CarFactoryKotlin
 import com.mdht.beautifulkotlin.abstractfactory.kotlin.EnumFactoryKotlin
+import com.mdht.beautifulkotlin.adapter.java.Volt220Java
+import com.mdht.beautifulkotlin.adapter.java.VoltAdapterJava
+import com.mdht.beautifulkotlin.adapter.kotlin.Volt220Kotlin
+import com.mdht.beautifulkotlin.adapter.kotlin.VoltAdapterKotlin
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
@@ -95,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvMediator: TextView
     private lateinit var mTvProxy: TextView
     private lateinit var mTvComposite: TextView
-
+    private lateinit var mTvAdapter: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -122,6 +126,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvMediator = findViewById<TextView>(R.id.tv_mediator)
         mTvProxy = findViewById<TextView>(R.id.tv_proxy)
         mTvComposite = findViewById<TextView>(R.id.tv_composite)
+        mTvAdapter = findViewById<TextView>(R.id.tv_adapter)
     }
 
     private fun initListener() {
@@ -143,6 +148,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvMediator.setOnClickListener(this)
         mTvProxy.setOnClickListener(this)
         mTvComposite.setOnClickListener(this)
+        mTvAdapter.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -394,6 +400,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 rootK.addChild(branch1K)
                 rootK.addChild(branch2K)
                 rootK.doSomething()
+            }
+            R.id.tv_adapter -> {
+                val volt = Volt220Java()
+                val adapter = VoltAdapterJava(volt)
+                Log.d("MainActivity", "adapter: ${adapter.volt5}")
+
+                val voltKotlin = Volt220Kotlin()
+                val adapterKotlin = VoltAdapterKotlin(voltKotlin)
+                Log.d("MainActivity", "adapter: ${adapterKotlin.getVolt220()}")
             }
 
         }
