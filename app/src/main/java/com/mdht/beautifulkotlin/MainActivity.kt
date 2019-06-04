@@ -39,6 +39,9 @@ import com.mdht.beautifulkotlin.composite.java.CompositeJava
 import com.mdht.beautifulkotlin.composite.java.LeafJava
 import com.mdht.beautifulkotlin.composite.kotlin.CompositeKotlin
 import com.mdht.beautifulkotlin.composite.kotlin.LeafKotlin
+import com.mdht.beautifulkotlin.decorator.java.BoyJava
+import com.mdht.beautifulkotlin.decorator.java.CheapClothJava
+import com.mdht.beautifulkotlin.decorator.java.PersonJava
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -100,6 +103,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvProxy: TextView
     private lateinit var mTvComposite: TextView
     private lateinit var mTvAdapter: TextView
+    private lateinit var mTvDecorator: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -127,6 +131,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvProxy = findViewById<TextView>(R.id.tv_proxy)
         mTvComposite = findViewById<TextView>(R.id.tv_composite)
         mTvAdapter = findViewById<TextView>(R.id.tv_adapter)
+        mTvDecorator = findViewById<TextView>(R.id.tv_decorator)
     }
 
     private fun initListener() {
@@ -149,6 +154,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvProxy.setOnClickListener(this)
         mTvComposite.setOnClickListener(this)
         mTvAdapter.setOnClickListener(this)
+        mTvDecorator.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -409,6 +415,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val voltKotlin = Volt220Kotlin()
                 val adapterKotlin = VoltAdapterKotlin(voltKotlin)
                 Log.d("MainActivity", "adapter: ${adapterKotlin.getVolt220()}")
+            }
+            R.id.tv_decorator -> {
+                val personJava:PersonJava = BoyJava()
+                val clothCheapJava = CheapClothJava(personJava)
+                clothCheapJava.dressed()
             }
 
         }
