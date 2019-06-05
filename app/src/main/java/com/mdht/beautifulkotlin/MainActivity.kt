@@ -48,6 +48,8 @@ import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
 import com.mdht.beautifulkotlin.factorymethod.kotlin.EnumKotlin
+import com.mdht.beautifulkotlin.flyweight.java.TicketFactoryJava
+import com.mdht.beautifulkotlin.flyweight.kotlin.TicketFactoryKotlin
 import com.mdht.beautifulkotlin.interpreter.java.CalculatorJava
 import com.mdht.beautifulkotlin.interpreter.kotlin.CalculatorKotlin
 import com.mdht.beautifulkotlin.iterator.kotlin.ConcreteAggregateKotlin
@@ -106,6 +108,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvComposite: TextView
     private lateinit var mTvAdapter: TextView
     private lateinit var mTvDecorator: TextView
+    private lateinit var mTvFlyweight: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -134,6 +138,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvComposite = findViewById<TextView>(R.id.tv_composite)
         mTvAdapter = findViewById<TextView>(R.id.tv_adapter)
         mTvDecorator = findViewById<TextView>(R.id.tv_decorator)
+        mTvFlyweight = findViewById<TextView>(R.id.tv_flyweight)
     }
 
     private fun initListener() {
@@ -157,6 +162,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvComposite.setOnClickListener(this)
         mTvAdapter.setOnClickListener(this)
         mTvDecorator.setOnClickListener(this)
+        mTvFlyweight.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -419,13 +425,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Log.d("MainActivity", "adapter: ${adapterKotlin.getVolt220()}")
             }
             R.id.tv_decorator -> {
-                val personJava:PersonJava = BoyJava()
+                val personJava: PersonJava = BoyJava()
                 val clothCheapJava = CheapClothJava(personJava)
                 clothCheapJava.dressed()
 
                 val personKotlin = BoyKotlin()
                 val clothExpersiveKotlin = ExpensiveClothKotlin(personKotlin)
                 clothExpersiveKotlin.dressed()
+            }
+            R.id.tv_flyweight -> {
+                val ticketJava01 = TicketFactoryJava.getTicket("北京", "青岛")
+                ticketJava01.showTicketInfo("上铺")
+                val ticketJava02 = TicketFactoryJava.getTicket("北京", "青岛")
+                ticketJava02.showTicketInfo("下铺")
+                val ticketJava03 = TicketFactoryJava.getTicket("北京", "青岛")
+                ticketJava03.showTicketInfo("坐票")
+
+                val ticketKotlin01 = TicketFactoryKotlin.getTicket("海南", "上海")
+                ticketKotlin01?.showTicketInfo("上铺")
+                val ticketKotlin02 = TicketFactoryKotlin.getTicket("海南", "上海")
+                ticketKotlin02?.showTicketInfo("下铺")
+                val ticketKotlin03 = TicketFactoryKotlin.getTicket("海南", "上海")
+                ticketKotlin03?.showTicketInfo("坐票")
             }
 
         }
