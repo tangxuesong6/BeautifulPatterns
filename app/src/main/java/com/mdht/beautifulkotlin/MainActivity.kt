@@ -45,6 +45,7 @@ import com.mdht.beautifulkotlin.decorator.java.PersonJava
 import com.mdht.beautifulkotlin.decorator.kotlin.BoyKotlin
 import com.mdht.beautifulkotlin.decorator.kotlin.ExpensiveClothKotlin
 import com.mdht.beautifulkotlin.facade.java.MobilePhoneJava
+import com.mdht.beautifulkotlin.facade.kotlin.MobilePhoneKotlin
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -455,6 +456,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val nexus6 = MobilePhoneJava()
                 nexus6.takePicture()
                 nexus6.videoChat()
+
+                val iphone = MobilePhoneKotlin()
+                iphone.dail()
+                iphone.closeCamera()
             }
 
         }
