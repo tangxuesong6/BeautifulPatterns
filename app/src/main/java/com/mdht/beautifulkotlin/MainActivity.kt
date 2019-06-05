@@ -13,6 +13,10 @@ import com.mdht.beautifulkotlin.adapter.java.Volt220Java
 import com.mdht.beautifulkotlin.adapter.java.VoltAdapterJava
 import com.mdht.beautifulkotlin.adapter.kotlin.Volt220Kotlin
 import com.mdht.beautifulkotlin.adapter.kotlin.VoltAdapterKotlin
+import com.mdht.beautifulkotlin.bridge.java.LargeCoffeeJava
+import com.mdht.beautifulkotlin.bridge.java.OrdinaryJava
+import com.mdht.beautifulkotlin.bridge.java.SmallCoffeeJava
+import com.mdht.beautifulkotlin.bridge.java.SugarJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
@@ -112,6 +116,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvDecorator: TextView
     private lateinit var mTvFlyweight: TextView
     private lateinit var mTvFacade: TextView
+    private lateinit var mTvBridge: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -142,6 +148,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvDecorator = findViewById<TextView>(R.id.tv_decorator)
         mTvFlyweight = findViewById<TextView>(R.id.tv_flyweight)
         mTvFacade = findViewById<TextView>(R.id.tv_facade)
+        mTvBridge = findViewById<TextView>(R.id.tv_bridge)
     }
 
     private fun initListener() {
@@ -167,6 +174,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvDecorator.setOnClickListener(this)
         mTvFlyweight.setOnClickListener(this)
         mTvFacade.setOnClickListener(this)
+        mTvBridge.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -460,6 +468,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val iphone = MobilePhoneKotlin()
                 iphone.dail()
                 iphone.closeCamera()
+            }
+            R.id.tv_bridge -> {
+                val implOrdinaryJava = OrdinaryJava()
+                val implSugarJava = SugarJava()
+                val largeCofeeJava = LargeCoffeeJava(implOrdinaryJava)
+                largeCofeeJava.makeCoffee()
+                val smallCoffeeJava = SmallCoffeeJava(implSugarJava)
+                smallCoffeeJava.makeCoffee()
+
             }
 
         }
