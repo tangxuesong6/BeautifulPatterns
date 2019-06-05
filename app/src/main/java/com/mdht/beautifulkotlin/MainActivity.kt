@@ -17,6 +17,10 @@ import com.mdht.beautifulkotlin.bridge.java.LargeCoffeeJava
 import com.mdht.beautifulkotlin.bridge.java.OrdinaryJava
 import com.mdht.beautifulkotlin.bridge.java.SmallCoffeeJava
 import com.mdht.beautifulkotlin.bridge.java.SugarJava
+import com.mdht.beautifulkotlin.bridge.kotlin.LargeCoffeeKotlin
+import com.mdht.beautifulkotlin.bridge.kotlin.OrdinaryKotlin
+import com.mdht.beautifulkotlin.bridge.kotlin.SmallCoffeeKotlin
+import com.mdht.beautifulkotlin.bridge.kotlin.SugarKotlin
 import com.mdht.beautifulkotlin.builder.StudentConfigJava
 import com.mdht.beautifulkotlin.builder.StudentConfigJustSeeSee
 import com.mdht.beautifulkotlin.builder.StudentConfigKotlin
@@ -476,6 +480,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 largeCofeeJava.makeCoffee()
                 val smallCoffeeJava = SmallCoffeeJava(implSugarJava)
                 smallCoffeeJava.makeCoffee()
+
+                val implOrdinaryKotlin = OrdinaryKotlin()
+                val implSugarKotlin = SugarKotlin()
+                val largeCoffeeKotlin = LargeCoffeeKotlin(implSugarKotlin)
+                largeCoffeeKotlin.makeCoffee()
+                val smallCoffeeKotlin = SmallCoffeeKotlin(implOrdinaryKotlin)
+                smallCoffeeKotlin.makeCoffee()
 
             }
 
