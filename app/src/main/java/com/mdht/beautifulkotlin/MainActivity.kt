@@ -44,6 +44,7 @@ import com.mdht.beautifulkotlin.decorator.java.CheapClothJava
 import com.mdht.beautifulkotlin.decorator.java.PersonJava
 import com.mdht.beautifulkotlin.decorator.kotlin.BoyKotlin
 import com.mdht.beautifulkotlin.decorator.kotlin.ExpensiveClothKotlin
+import com.mdht.beautifulkotlin.facade.java.MobilePhoneJava
 import com.mdht.beautifulkotlin.factorymethod.java.ColorFactoryJava
 import com.mdht.beautifulkotlin.factorymethod.java.EnumJava
 import com.mdht.beautifulkotlin.factorymethod.kotlin.ColorFactoryKotlin
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mTvAdapter: TextView
     private lateinit var mTvDecorator: TextView
     private lateinit var mTvFlyweight: TextView
-
+    private lateinit var mTvFacade: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -139,6 +140,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvAdapter = findViewById<TextView>(R.id.tv_adapter)
         mTvDecorator = findViewById<TextView>(R.id.tv_decorator)
         mTvFlyweight = findViewById<TextView>(R.id.tv_flyweight)
+        mTvFacade = findViewById<TextView>(R.id.tv_facade)
     }
 
     private fun initListener() {
@@ -163,6 +165,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mTvAdapter.setOnClickListener(this)
         mTvDecorator.setOnClickListener(this)
         mTvFlyweight.setOnClickListener(this)
+        mTvFacade.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -447,6 +450,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 ticketKotlin02?.showTicketInfo("下铺")
                 val ticketKotlin03 = TicketFactoryKotlin.getTicket("海南", "上海")
                 ticketKotlin03?.showTicketInfo("坐票")
+            }
+            R.id.tv_facade -> {
+                val nexus6 = MobilePhoneJava()
+                nexus6.takePicture()
+                nexus6.videoChat()
             }
 
         }
