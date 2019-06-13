@@ -30,7 +30,7 @@ public class CompositeJava extends ComponentJava {
 
     @Override
     public void removeChild(ComponentJava componentJava) {
-        componentJava.removeChild(componentJava);
+        components.remove(componentJava);
     }
 
     @Override
